@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>چای‌خانه‌ی سماور | چای دم‌کشیده، آرام و سر وقت</title>
-<meta name="description" content="چای‌خانه‌ی سماور؛ چای دمی، قهوه‌ی تازه و شیرینی خانگی در دل بازار قدیم">
+<title>چای‌خانه‌ی گل نرگس | چای دم‌کشیده، آرام و سر وقت</title>
+<meta name="description" content="چای‌خانه‌ی گل؛ چای دمی، قهوه‌ی تازه و شیرینی خانگی در دل بازار قدیم">
 <link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Vazirmatn:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--ink:#0f2d33;--deep:#0a2227;--saffron:#e8a33d;--paper:#f3ead7;--pome:#c2415a;--mute:#9db5b4}
@@ -93,7 +93,7 @@ nav ul{gap:12px;font-size:14px}
 
 <nav>
   <div class="wrap">
-    <a class="logo" href="#">سماور</a>
+    <a class="logo" href="#">گل نرگس</a>
     <ul>
       <li><a href="#menu">منو</a></li>
       <li><a href="#gallery">گالری</a></li>
@@ -106,7 +106,7 @@ nav ul{gap:12px;font-size:14px}
 <header class="hero wrap">
   <div class="txt">
     <h1>چای که<br>صبرش را<br>می‌شناسد</h1>
-    <p class="lead">از سال ۱۳۹۸ در دل بازار قدیم، سماورمان هیچ‌وقت خاموش نشده. چای دمی، قهوه‌ی تازه و شیرینی خانگی، سر ساعت و بی‌عجله.</p>
+    <p class="lead">  در دل بازار قدیم، سماورمان هیچ‌وقت خاموش نشده. چای دمی، قهوه‌ی تازه و شیرینی خانگی، سر ساعت و بی‌عجله.</p>
     <p><a class="btn" href="#menu">دیدن منوی امروز</a><a class="btn ghost" href="#reserve">رزرو میز</a></p>
   </div>
   <div class="art" aria-hidden="true">
@@ -209,12 +209,12 @@ nav ul{gap:12px;font-size:14px}
   <div class="wrap">
     <div>
       <h2>داستان ما</h2>
-      <p>سماور اول را از بازار مسگرها خریدیم و قرار گذاشتیم هیچ‌وقت عجله نکنیم. چای ما را هر صبح همان‌جا دم می‌کنیم و قهوه را هر هفته از یک برشته‌کاری کوچک می‌گیریم. اگر وقت دارید بنشینید؛ اگر ندارید، یک استکان ایستاده بخورید.</p>
+      <p>چای ما را هر صبح همان‌جا دم می‌کنیم و قهوه را هر هفته از یک برشته‌کاری کوچک می‌گیریم. اگر وقت دارید بنشینید؛ اگر ندارید، یک استکان ایستاده بخورید.</p>
     </div>
     <dl>
       <dt>شنبه تا چهارشنبه</dt><dd>۸ صبح تا ۱۰ شب</dd>
       <dt>پنجشنبه و جمعه</dt><dd>۹ صبح تا ۱۲ شب</dd>
-      <dt>نشانی</dt><dd>بازار قدیم، کوچه‌ی مسگرها</dd>
+      <dt>نشانی</dt><dd>بازار قدیم   </dd>
     </dl>
   </div>
 </section>
@@ -237,8 +237,110 @@ nav ul{gap:12px;font-size:14px}
 </section>
 
 <footer>
-  <p>بازار قدیم، کوچه‌ی مسگرها · تلفن: ۰۲۱۰۰۰۰۰۰۰۰</p>
-  <p>© چای‌خانه‌ی سماور (نمونه‌کار)</p>
+  <p>بازار قدیم · تلفن: ۰۲۱۰۰۰۰۰۰۰۰</p>
+  <p>© چای‌خانه‌ی گل نرگس (نمونه‌کار)</p>
+</footer>
+
+<script>
+  const tabs = document.querySelectorAll('.tabs button');
+  const rows = document.querySelectorAll('.row');
+  tabs.forEach(b => b.addEventListener('click', () => {
+    tabs.forEach(t => t.setAttribute('aria-selected', t === b));
+    rows.forEach(r => r.hidden = b.dataset.f !== 'all' && r.dataset.c !== b.dataset.f);
+  }));
+
+  const f = document.getElementById('rf');
+  const msg = document.getElementById('msg');
+  const d = document.getElementById('date');
+  d.min = new Date().toISOString().split('T')[0];
+
+  const toEn = s => s.replace(/[۰-۹]/g, x => '۰۱۲۳۴۵۶۷۸۹'.indexOf(x));
+  function say(t, err) { msg.textContent = t; msg.className = err ? 'err' : 'ok'; }
+
+  f.addEventListener('submit', e => {
+    e.preventDefault();
+    const n = f.fname.value.trim();
+    const t = toEn(f.tel.value.trim());
+    if (n.length < 2) return say('لطفاً نام خود را وارد کنید.', true);
+    if (!/^09\d{9}$/.test(t)) return say('شماره‌ی موبایل باید ۱۱ رقم باشد و با ۰۹ شروع شود.', true);
+    if (!d.value) return say('تاریخ مراجعه را انتخاب کنید.', true);
+    say(n + ' عزیز، درخواست رزرو شما ثبت شد. برای تأیید با شما تماس می‌گیریم.');
+    f.reset();
+  });
+</script>
+
+</body>
+</html>/>
+        </svg>
+        <figcaption>چای زعفرانی با نبات</figcaption>
+      </figure>
+
+      <figure>
+        <svg viewBox="0 0 200 150" role="img" aria-label="فنجان قهوه از بالا">
+          <rect width="200" height="150" fill="#1b3b44"/>
+          <circle cx="100" cy="75" r="54" fill="#f3ead7"/>
+          <rect x="132" y="68" width="30" height="14" rx="7" fill="#fff"/>
+          <circle cx="100" cy="75" r="38" fill="#fff"/>
+          <circle cx="100" cy="75" r="31" fill="#5a3418"/>
+          <path d="M100 92 C80 78 84 62 100 70 C116 62 120 78 100 92Z" fill="#e9cfae"/>
+        </svg>
+        <figcaption>لاته‌ی دارچین</figcaption>
+      </figure>
+
+      <figure>
+        <svg viewBox="0 0 200 150" role="img" aria-label="باقلوا روی بشقاب">
+          <rect width="200" height="150" fill="#0f2d33"/>
+          <circle cx="100" cy="75" r="58" fill="#f3ead7"/>
+          <g fill="#e8a33d" stroke="#8f3d0c" stroke-width="2">
+            <path d="M100 28 L130 58 L100 88 L70 58Z"/>
+            <path d="M100 62 L130 92 L100 122 L70 92Z"/>
+          </g>
+          <g fill="#7fa650">
+            <circle cx="100" cy="58" r="4"/>
+            <circle cx="100" cy="92" r="4"/>
+          </g>
+        </svg>
+        <figcaption>باقلوای پسته‌ای خانگی</figcaption>
+      </figure>
+
+    </div>
+  </div>
+</section>
+
+<section class="story" id="story">
+  <div class="wrap">
+    <div>
+      <h2>داستان ما</h2>
+      <p> ما را هر صبح همان‌جا دم می‌کنیم و قهوه را هر هفته از یک برشته‌کاری کوچک می‌گیریم. اگر وقت دارید بنشینید؛ اگر ندارید، یک استکان ایستاده بخورید.</p>
+    </div>
+    <dl>
+      <dt>شنبه تا چهارشنبه</dt><dd>۸ صبح تا ۱۰ شب</dd>
+      <dt>پنجشنبه و جمعه</dt><dd>۹ صبح تا ۱۲ شب</dd>
+      <dt>نشانی</dt><dd>بازار قدیم  </dd>
+    </dl>
+  </div>
+</section>
+
+<section id="reserve">
+  <div class="wrap">
+    <h2>رزرو میز</h2>
+    <p class="sub">فرم را پر کنید تا برای تأیید با شما تماس بگیریم.</p>
+    <form id="rf" novalidate>
+      <label>نام <input name="fname" autocomplete="name"></label>
+      <label>شماره‌ی موبایل <input name="tel" type="tel" inputmode="numeric" placeholder="۰۹۱۲۳۴۵۶۷۸۹"></label>
+      <label>تاریخ <input name="date" id="date" type="date"></label>
+      <label>تعداد نفرات
+        <select name="guests"><option>۱ تا ۲ نفر</option><option>۳ تا ۴ نفر</option><option>۵ تا ۸ نفر</option></select>
+      </label>
+      <p id="msg" role="status" aria-live="polite"></p>
+      <button class="btn" type="submit">ثبت درخواست رزرو</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <p>بازار قدیم · تلفن: ۰۲۱۰۰۰۰۰۰۰۰</p>
+  <p>© چای‌خانه‌ی گل نرگس (نمونه‌کار)</p>
 </footer>
 
 <script>
